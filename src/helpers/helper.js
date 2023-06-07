@@ -82,12 +82,10 @@ export const createSheetPayload = (payload, sheetId) => {
     totalAmount += Number(product.quantity) * Number(product.price);
   });
 
-  const gstAmount = totalAmount * 0.09;
+  const gstAmount = (totalAmount * 0.09).toFixed(2);
   const totalAmountWithGst = totalAmount + gstAmount * 2;
-  const roundedTotalAmountWithGst = Math.round(totalAmountWithGst);
-  const roundOff = (roundedTotalAmountWithGst - totalAmountWithGst).toFixed(
-    2
-  );
+  const roundedTotalAmountWithGst = Math.round(totalAmountWithGst).toFixed(2);
+  const roundOff = (roundedTotalAmountWithGst - totalAmountWithGst).toFixed(2);
   const totalAmountInWords = 
     numberToWords(roundedTotalAmountWithGst, { currency: true })
   const productsList = payload.products.map((product, index) => {
